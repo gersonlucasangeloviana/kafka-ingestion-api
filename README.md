@@ -113,6 +113,8 @@ P95_MS=200 P99_MS=500 PRE_ALLOCATED_VUS=1500 MAX_VUS=7500 \
 
 Run k6 on a separate machine, record VPS CPU/RAM/disk, broker/API limits, image versions, network path, partition count and competing workloads, and repeat each measurement at least three times. Watch API CPU/memory/GC, broker CPU/disk/network and generator CPU. Do not clear the topic during a measurement or immediately before the next stage. See [performance methodology](docs/performance.md).
 
+[A short local validation](docs/local-smoke-test.md) passed all stages up to 5,000 req/s, with 50,001 acknowledged publications in the last 10-second stage and zero errors or dropped iterations. This is a functional smoke result, not a sustained-capacity claim.
+
 **No VPS capacity result has been claimed.** The repository provides the experiment; actual maximum throughput must be measured on the target deployment.
 
 ## Development and verification
