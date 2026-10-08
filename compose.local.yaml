@@ -5,3 +5,11 @@ services:
   api:
     ports:
       - "127.0.0.1:${API_PORT:-8080}:8080"
+    labels:
+      traefik.enable: "false"
+
+# Local execution does not require Dokploy's external network.
+networks:
+  dokploy-network:
+    external: false
+    name: ${COMPOSE_PROJECT_NAME:-kafka}-local-proxy

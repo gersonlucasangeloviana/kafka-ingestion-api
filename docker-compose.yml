@@ -22,6 +22,8 @@ services:
       KAFKA_HEAP_OPTS: -Xms512m -Xmx512m
     volumes:
       - kafka-data:/var/lib/kafka/data
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "/opt/kafka/bin/kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
       interval: 15s
@@ -46,7 +48,18 @@ services:
       Ingestion__MaxConcurrentRequests: ${Ingestion__MaxConcurrentRequests:-8192}
     expose:
       - "8080"
+    networks:
+      - default
+      - dokploy-network
+    labels:
+      traefik.docker.network: dokploy-network
     stop_grace_period: 30s
 
 volumes:
   kafka-data:
+
+networks:
+  default:
+  dokploy-network:
+    external: true
+    name: dokploy-network

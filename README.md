@@ -27,7 +27,7 @@ cp .env.example .env.local
 docker compose --env-file .env.local -f docker-compose.yml -f compose.local.yaml up -d --build --wait
 ```
 
-The API listens on `http://localhost:8080` (override the host port with `API_PORT=8085` if needed). Kafka's local listener is `localhost:19092`. Both published ports bind only to loopback. The base `docker-compose.yml` publishes no host ports and is intended for Dokploy.
+The API listens on `http://localhost:8080` (override the host port with `API_PORT=8085` if needed). Kafka's local listener is `localhost:19092`. Both published ports bind only to loopback. The base `docker-compose.yml` publishes no host ports and is intended for Dokploy: the API joins the existing external `dokploy-network` for Traefik and the project's default network for Kafka. The local override uses a project-local network instead and disables Traefik discovery, so local development does not require Dokploy.
 
 `.env.local` is ignored by Git and excluded from Docker build context. Docker Compose does not automatically load that filename: use `--env-file .env.local`. Native .NET also does not automatically load it; use `./scripts/run-api.sh`.
 
@@ -153,6 +153,8 @@ docs/
 The composition root stays in `Program.cs`. The gateway interface isolates the external broker for contract tests; it is not a generic repository abstraction. No database, mediator, or separate domain project is needed for this small service. See [architecture decisions](docs/architecture.md) and the [Dokploy guide in Portuguese](docs/dokploy.pt-BR.md).
 
 ## References
+
+Project journal in Portuguese: [infrastructure, configuration history and evidence for LinkedIn/YouTube](docs/diario-do-projeto.pt-BR.md).
 
 - [Microsoft: .NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy)
 - [Microsoft: Minimal APIs](https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0)

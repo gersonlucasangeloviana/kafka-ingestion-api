@@ -1,17 +1,21 @@
 # Publicação no Dokploy
 
-Ambiente alvo informado: **8 vCPU, 14 GB de RAM, 80 GB de disco**. O tipo de CPU/disco, os limites dos containers e os outros serviços da VPS devem ser registrados na medição. O deploy será configurado pelo proprietário a partir de commits na branch `main`.
+Ambiente alvo informado: VPS **Kronichost, 8 vCPU, 14 GB de RAM, 80 GB de NVMe**. O modelo da CPU, os limites dos containers e os outros serviços da VPS devem ser registrados na medição. O deploy será configurado pelo proprietário a partir de commits na branch `main`. O [diário do projeto](diario-do-projeto.pt-BR.md) registra configurações informadas, decisões e evidências.
 
 ## API e Kafka juntos
 
 1. Crie um projeto e um serviço do tipo **Docker Compose**, com provider GitHub/Git.
 2. Selecione o repositório `gersonlucasangeloviana/kafka-ingestion-api`, branch `main`, campo **Compose Path** com `./docker-compose.yml`. Esse é o arquivo na raiz do repositório.
 3. Em Environment, copie as variáveis do seu `.env.local` sem enviá-las ao GitHub. As duas chaves precisam ser diferentes, com pelo menos 16 caracteres. O Compose injeta explicitamente essas variáveis no container da API.
-4. Adicione um domínio ao serviço `api`, porta interna **8080**, com HTTPS. O Dokploy configura o roteamento do Traefik. Não publique o Kafka na internet.
-5. Faça o deploy. O Kafka usa um volume persistente; a API espera o health check do broker e cria o tópico no startup. Verifique `/health/ready`.
-6. Execute k6 em outra máquina, com `BASE_URL=https://seu-dominio` e a chave de publicação. A chave administrativa só é necessária para limpar os registros.
+4. Adicione `api-kafka.vianadev.com.br` ao serviço `api`, porta interna **8080**, caminho `/`, com HTTPS e certificado Let's Encrypt. O registro DNS está sendo adicionado na Cloudflare pelo proprietário. O Dokploy configura o roteamento do Traefik. Confira em **Preview Compose** os labels do domínio e a conexão da API à `dokploy-network`. Não publique o Kafka na internet.
+5. Faça o deploy, inclusive depois de alterações no domínio: no modo Compose, os labels de roteamento entram em vigor no redeploy. O Kafka usa um volume persistente; a API espera o health check do broker e cria o tópico no startup. Verifique `/health/live` e `/health/ready` por HTTPS com certificado válido.
+6. Execute k6 em outra máquina, com `BASE_URL=https://api-kafka.vianadev.com.br` e a chave de publicação. Registre se a execução acessa a VPS diretamente ou passa pelo proxy Cloudflare; consulte a [orientação no diário](diario-do-projeto.pt-BR.md#cloudflare-e-testes-de-carga--orientação-registrada-em-07102026). A chave administrativa só é necessária para limpar os registros.
 
 O `compose.local.yaml` é exclusivo para testes locais. Não o adicione no Dokploy. Use o modo Compose: o modo Stack não aceita build direto do Dockerfile.
+
+O Compose base usa a rede externa existente `dokploy-network`, como no deploy sem **Isolated Deployments**. A API pertence a essa rede e à rede `default` do projeto; o Kafka pertence somente à `default`. O label `traefik.docker.network` indica ao Traefik qual rede usar para alcançar a API. Não é necessário publicar a porta 8080 no host. Os labels de domínio, HTTPS e certificado continuam sendo gerados pelo painel do Dokploy; adicionar apenas a rede não cria uma rota para o hostname.
+
+Para desenvolvimento, o override `compose.local.yaml` transforma a referência à rede externa em uma rede local do projeto e desabilita descoberta da API pelo Traefik. Assim o comando local não exige instalar o Dokploy nem criar sua rede compartilhada. Se **Isolated Deployments** estiver habilitado na VPS, confira o Compose gerado: a rede usada pelo Traefik e seu label precisam corresponder à rede isolada gerenciada pelo Dokploy.
 
 O Kafka está configurado com 512 MiB de heap, mas usa memória adicional fora do heap e cache do sistema. Configure os limites de recursos conforme a VPS e registre-os nos resultados. Outros serviços na VPS influenciam a capacidade medida.
 

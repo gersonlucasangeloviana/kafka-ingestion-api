@@ -22,10 +22,12 @@ Defaults: 60 seconds per stage, 15 seconds warmup, 10 seconds cooldown, p95 < 20
 ## Interpretation
 
 - `dropped_iterations` with an overloaded generator makes the target rate inconclusive; adjust virtual users or generator capacity and repeat.
-- HTTP 429 indicates the API concurrency budget was exhausted.
+- HTTP 429 from the API indicates its concurrency budget was exhausted. With Cloudflare or another proxy in the path, 429 can also come from edge rate limiting; correlate responses with origin logs and edge security events before attributing the failure.
 - HTTP 503 indicates an unconfirmed broker operation; timeouts can still have resulted in a Kafka write.
 - Broker disk saturation, CPU pressure, API allocation/GC or a proxy bottleneck require distinct experiments.
 - Running generator, API and Kafka on one laptop measures a competing-resource environment. It cannot establish VPS capacity.
 - Retention and purge may reclaim disk asynchronously. Allow the broker to stabilize before comparisons.
 
 The repository does not contain invented VPS measurements. Local validation, if recorded, is a smoke test only.
+
+For the target VPS, measure the direct origin path first, then repeat with Cloudflare proxying the public hostname. Keep TLS hostname validation and record the path and security rules with each run. See the [project journal and Cloudflare guidance in Portuguese](diario-do-projeto.pt-BR.md).
