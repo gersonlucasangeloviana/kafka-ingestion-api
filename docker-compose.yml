@@ -52,7 +52,8 @@ services:
       - default
       - dokploy-network
     labels:
-      traefik.docker.network: dokploy-network
+      # Dokploy v0.29.11 injects domain labels only into list-form labels.
+      - "traefik.docker.network=dokploy-network"
     stop_grace_period: 30s
 
 volumes:
