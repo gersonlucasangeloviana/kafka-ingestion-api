@@ -1,0 +1,292 @@
+{
+  "options": {
+    "summaryTimeUnit": "",
+    "noColor": false,
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)",
+      "p(99)"
+    ]
+  },
+  "state": {
+    "isStdOutTTY": true,
+    "isStdErrTTY": true,
+    "testRunDurationMs": 60075.707
+  },
+  "metrics": {
+    "http_req_tls_handshaking": {
+      "values": {
+        "max": 158.334,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0,
+        "avg": 0.5091039942225432,
+        "min": 0,
+        "med": 0
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "kafka_confirmations": {
+      "values": {
+        "rate": 1,
+        "passes": 18000,
+        "fails": 0
+      },
+      "thresholds": {
+        "rate>0.999": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.18241119937781247,
+        "min": 0.012,
+        "med": 0.169,
+        "max": 7.43,
+        "p(90)": 0.281,
+        "p(95)": 0.385,
+        "p(99)": 0.793
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 121.601,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0,
+        "avg": 0.3216432420421087,
+        "min": 0,
+        "med": 0
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 90,
+        "min": 90,
+        "max": 90
+      }
+    },
+    "http_req_failed{endpoint:publish}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 18000
+      },
+      "thresholds": {
+        "rate<0.001": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 18001
+      }
+    },
+    "http_req_duration{endpoint:publish}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 19.177,
+        "p(95)": 20.0031,
+        "p(99)": 89.2655899999997,
+        "avg": 18.338787777777878,
+        "min": 9.065,
+        "med": 17.0475,
+        "max": 658.837
+      },
+      "thresholds": {
+        "p(95)<200": {
+          "ok": true
+        },
+        "p(99)<500": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_blocked": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.8316636297984393,
+        "min": 0,
+        "med": 0,
+        "max": 256.495,
+        "p(90)": 0.001,
+        "p(95)": 0.001,
+        "p(99)": 0.001
+      }
+    },
+    "data_sent": {
+      "values": {
+        "count": 2113274,
+        "rate": 35176.847773094036
+      },
+      "type": "counter",
+      "contains": "data"
+    },
+    "confirmed_messages": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 18000,
+        "rate": 299.621942027249
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 18001,
+        "rate": 299.638587690695
+      }
+    },
+    "data_received": {
+      "values": {
+        "rate": 67959.61635540969,
+        "count": 4082722
+      },
+      "type": "counter",
+      "contains": "data"
+    },
+    "iterations": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 18000,
+        "rate": 299.621942027249
+      }
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 18.338628353980432,
+        "min": 9.065,
+        "med": 17.047,
+        "max": 658.837,
+        "p(90)": 19.177,
+        "p(95)": 20.003,
+        "p(99)": 89.247
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 1,
+        "passes": 18000,
+        "fails": 0
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 19.4197247,
+        "p(95)": 20.327777100000002,
+        "p(99)": 137.03739191,
+        "avg": 19.390145384444473,
+        "min": 9.232417,
+        "med": 17.267062,
+        "max": 658.983958
+      }
+    },
+    "dropped_iterations": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "count==0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_receiving": {
+      "values": {
+        "avg": 0.4228240653297022,
+        "min": 0.004,
+        "med": 0.118,
+        "max": 228.696,
+        "p(90)": 0.309,
+        "p(95)": 0.407,
+        "p(99)": 0.918
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 17.047,
+        "max": 658.837,
+        "p(90)": 19.177,
+        "p(95)": 20.003,
+        "p(99)": 89.247,
+        "avg": 18.338628353980432,
+        "min": 9.065
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "max": 9,
+        "value": 3,
+        "min": 3
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 17.733393089272973,
+        "min": 8.852,
+        "med": 16.706,
+        "max": 658.576,
+        "p(90)": 18.791,
+        "p(95)": 19.506,
+        "p(99)": 56.767
+      }
+    }
+  },
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [],
+    "checks": [
+        {
+          "path": "::Kafka acknowledged publication",
+          "id": "e7feb3e951b46adb54792581513e663a",
+          "passes": 18000,
+          "fails": 0,
+          "name": "Kafka acknowledged publication"
+        }
+      ]
+  }
+}

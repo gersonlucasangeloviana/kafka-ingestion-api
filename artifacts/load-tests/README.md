@@ -6,6 +6,7 @@ Each directory is named by its run start time in UTC. Completed evidence is vers
 |---|---|---|---|
 | `20261007T211003Z` | Local API and Kafka on the generator host | 10 seconds per stage, 100–1,000 then 3,000 and 5,000 req/s; no warmup or cooldown | [Results](20261007T211003Z/results.md), [environment details](../../docs/local-smoke-test.md) |
 | `20261008T014044Z` | Mac generator → public VPS API at `https://api-kafka.vianadev.com.br` | 15 seconds per stage, 10/50/100 req/s; no warmup, 5-second cooldown; command supplied by the owner | [Results](20261008T014044Z/results.md) |
+| `20261008T014500Z` | Mac generator → public VPS API at `https://api-kafka.vianadev.com.br` | 60-second stages; 100–400 req/s passed; stopped at 500 req/s because 12 iterations were dropped | [Results](20261008T014500Z/results.md), [analysis](20261008T014500Z/analysis.md) |
 
 The second run started on October 7, 2026 at 22:40:44 in São Paulo. All three stages passed, totaling 2,403 confirmed messages, with no HTTP errors or dropped iterations. This is a short smoke test, not a sustained-capacity measurement. The API returns success after Kafka acknowledgement; downstream consumption was not measured.
 
