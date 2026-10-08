@@ -1,0 +1,81 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load-tests/ingestion.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 600 max VUs, 30s max duration (incl. graceful stop):
+              * ingestion: 100.00 iterations/s for 15s (maxVUs: 600, gracefulStop: 15s)
+
+
+running (01.0s), 010/600 VUs, 47 complete and 0 interrupted iterations
+ingestion   [   4% ] 010/600 VUs  00.6s/15s  100.00 iters/s
+
+running (02.0s), 006/600 VUs, 151 complete and 0 interrupted iterations
+ingestion   [  10% ] 006/600 VUs  01.6s/15s  100.00 iters/s
+
+running (03.0s), 009/600 VUs, 248 complete and 0 interrupted iterations
+ingestion   [  17% ] 009/600 VUs  02.6s/15s  100.00 iters/s
+
+running (04.0s), 008/600 VUs, 349 complete and 0 interrupted iterations
+ingestion   [  24% ] 008/600 VUs  03.6s/15s  100.00 iters/s
+
+running (05.0s), 009/600 VUs, 448 complete and 0 interrupted iterations
+ingestion   [  30% ] 009/600 VUs  04.6s/15s  100.00 iters/s
+
+running (06.0s), 007/600 VUs, 550 complete and 0 interrupted iterations
+ingestion   [  37% ] 007/600 VUs  05.6s/15s  100.00 iters/s
+
+running (07.0s), 002/600 VUs, 655 complete and 0 interrupted iterations
+ingestion   [  44% ] 002/600 VUs  06.6s/15s  100.00 iters/s
+
+running (08.0s), 002/600 VUs, 755 complete and 0 interrupted iterations
+ingestion   [  50% ] 002/600 VUs  07.6s/15s  100.00 iters/s
+
+running (09.0s), 002/600 VUs, 855 complete and 0 interrupted iterations
+ingestion   [  57% ] 002/600 VUs  08.6s/15s  100.00 iters/s
+
+running (10.0s), 002/600 VUs, 955 complete and 0 interrupted iterations
+ingestion   [  64% ] 002/600 VUs  09.6s/15s  100.00 iters/s
+
+running (11.0s), 003/600 VUs, 1054 complete and 0 interrupted iterations
+ingestion   [  70% ] 003/600 VUs  10.6s/15s  100.00 iters/s
+
+running (12.0s), 002/600 VUs, 1155 complete and 0 interrupted iterations
+ingestion   [  77% ] 002/600 VUs  11.6s/15s  100.00 iters/s
+
+running (13.0s), 002/600 VUs, 1255 complete and 0 interrupted iterations
+ingestion   [  84% ] 002/600 VUs  12.6s/15s  100.00 iters/s
+
+running (14.0s), 002/600 VUs, 1355 complete and 0 interrupted iterations
+ingestion   [  90% ] 002/600 VUs  13.6s/15s  100.00 iters/s
+
+running (15.0s), 002/600 VUs, 1455 complete and 0 interrupted iterations
+ingestion   [  97% ] 002/600 VUs  14.6s/15s  100.00 iters/s
+{
+  "targetRps": 100,
+  "confirmed": {
+    "count": 1501,
+    "rate": 97.2821089776091
+  },
+  "droppedIterations": 0,
+  "latency": {
+    "med": 17.968,
+    "max": 282.203,
+    "p(90)": 20.048,
+    "p(95)": 21.223,
+    "p(99)": 143.624,
+    "avg": 20.353040639573603,
+    "min": 11.081
+  },
+  "thresholdsPassed": true
+}
+
+running (15.4s), 000/600 VUs, 1501 complete and 0 interrupted iterations
+ingestion ✓ [ 100% ] 000/600 VUs  15s  100.00 iters/s

@@ -1,0 +1,18 @@
+{
+  "run_id": "20261008T020152Z",
+  "base_url": "https://api-kafka.vianadev.com.br",
+  "rates": [
+    "1000"
+  ],
+  "duration_per_stage": "60s",
+  "warmup": true,
+  "warmup_duration": "15s",
+  "warmup_rps": 100,
+  "cooldown_seconds": "10",
+  "p95_limit_ms": "200",
+  "p99_limit_ms": "500",
+  "pre_allocated_vus": "600",
+  "max_vus": "600",
+  "generator_os": "macOS-15.7.5-arm64-arm-64bit",
+  "k6_version": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)"
+}
