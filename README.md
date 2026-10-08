@@ -100,7 +100,7 @@ The runner warms up at 100 req/s, then measures **100, 200, 300, 400, 500, 600, 
 - p95 latency below 200 ms; p99 below 500 ms (configurable).
 - Zero `dropped_iterations`; generator capacity is part of the validity check.
 
-These are initial acceptance criteria, not promised capacity. Results and a Markdown comparison report are saved under ignored `artifacts/load-tests/`. Every measured iteration contains exactly one publication request. A readiness check happens outside the measurement scenario.
+These are initial acceptance criteria, not promised capacity. Results are saved under versionable `artifacts/load-tests/<UTC timestamp>/`: raw k6 JSON summaries, per-stage terminal logs, run parameters in `run.json`, and a Markdown comparison report in `results.md`. API keys are excluded from run metadata. Existing runs predate log/metadata capture; see the [results index](artifacts/load-tests/README.md). Every measured iteration contains exactly one publication request. A readiness check happens outside the measurement scenario.
 
 ```bash
 # Short local smoke run; not a capacity claim.

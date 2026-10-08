@@ -19,6 +19,12 @@ The built-in counter rate includes small setup/graceful-completion overhead. For
 
 Defaults: 60 seconds per stage, 15 seconds warmup, 10 seconds cooldown, p95 < 200 ms, p99 < 500 ms, HTTP errors < 0.1%, acknowledgements > 99.9%, no dropped iterations. Change these criteria only with an explicit benchmark objective and record the changes.
 
+## Saved evidence
+
+`scripts/run-load-tests.sh` saves each run in `artifacts/load-tests/<UTC timestamp>/`, which is eligible for Git versioning. Each stage has a raw `<rate>.json` summary and a `<rate>.log` terminal transcript. The warmup uses `warmup.json` and `warmup.log`; `run.json` records the endpoint (without URL credentials/query), rates, durations, latency criteria, virtual-user overrides and generator versions. `results.md` compares measured stages. Run metadata uses an explicit list of fields and excludes API keys and other environment secrets.
+
+The runner does not commit or push automatically. Commit a run after it finishes; its directory can contain partial evidence while it is running. Earlier runs retain their original JSON/Markdown files; logs that were not captured at execution time are unavailable. See the [results index](../artifacts/load-tests/README.md) for environment context.
+
 ## Interpretation
 
 - `dropped_iterations` with an overloaded generator makes the target rate inconclusive; adjust virtual users or generator capacity and repeat.
