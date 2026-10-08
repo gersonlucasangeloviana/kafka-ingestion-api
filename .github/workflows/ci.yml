@@ -19,7 +19,7 @@ jobs:
       - run: dotnet test -c Release --no-build --logger trx --results-directory TestResults
       - name: Start Kafka for integration tests
         run: |
-          Authentication__ApiKey=ci-placeholder-key Authentication__AdminApiKey=ci-placeholder-admin-key docker compose -f compose.yaml -f compose.local.yaml up -d --wait kafka
+          Authentication__ApiKey=ci-placeholder-key Authentication__AdminApiKey=ci-placeholder-admin-key docker compose -f docker-compose.yml -f compose.local.yaml up -d --wait kafka
       - name: Test publication and record deletion against Kafka
         env:
           KAFKA_INTEGRATION_BOOTSTRAP_SERVERS: localhost:19092

@@ -24,10 +24,10 @@ Requirements: Docker with Compose; .NET 10 SDK for local development; k6 and Pyt
 cp .env.example .env.local
 # Replace the two placeholder credentials with distinct secret values.
 # A generated .env.local may already exist in the original workspace.
-docker compose --env-file .env.local -f compose.yaml -f compose.local.yaml up -d --build --wait
+docker compose --env-file .env.local -f docker-compose.yml -f compose.local.yaml up -d --build --wait
 ```
 
-The API listens on `http://localhost:8080` (override the host port with `API_PORT=8085` if needed). Kafka's local listener is `localhost:19092`. Both published ports bind only to loopback. The base `compose.yaml` publishes no host ports and is intended for Dokploy.
+The API listens on `http://localhost:8080` (override the host port with `API_PORT=8085` if needed). Kafka's local listener is `localhost:19092`. Both published ports bind only to loopback. The base `docker-compose.yml` publishes no host ports and is intended for Dokploy.
 
 `.env.local` is ignored by Git and excluded from Docker build context. Docker Compose does not automatically load that filename: use `--env-file .env.local`. Native .NET also does not automatically load it; use `./scripts/run-api.sh`.
 

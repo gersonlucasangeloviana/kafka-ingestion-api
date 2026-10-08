@@ -5,7 +5,7 @@ Ambiente alvo informado: **8 vCPU, 14 GB de RAM, 80 GB de disco**. O tipo de CPU
 ## API e Kafka juntos
 
 1. Crie um projeto e um serviço do tipo **Docker Compose**, com provider GitHub/Git.
-2. Selecione o repositório `gersonlucasangeloviana/kafka-ingestion-api`, branch `main`, arquivo `compose.yaml`.
+2. Selecione o repositório `gersonlucasangeloviana/kafka-ingestion-api`, branch `main`, campo **Compose Path** com `./docker-compose.yml`. Esse é o arquivo na raiz do repositório.
 3. Em Environment, copie as variáveis do seu `.env.local` sem enviá-las ao GitHub. As duas chaves precisam ser diferentes, com pelo menos 16 caracteres. O Compose injeta explicitamente essas variáveis no container da API.
 4. Adicione um domínio ao serviço `api`, porta interna **8080**, com HTTPS. O Dokploy configura o roteamento do Traefik. Não publique o Kafka na internet.
 5. Faça o deploy. O Kafka usa um volume persistente; a API espera o health check do broker e cria o tópico no startup. Verifique `/health/ready`.
